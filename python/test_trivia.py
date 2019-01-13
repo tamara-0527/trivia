@@ -1,0 +1,47 @@
+#!/usr/bin/python2
+import trivia
+import unittest
+import logging
+
+logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.INFO)
+
+class DetailsOfGameTest(unittest.TestCase):
+    
+    def test_the_players_counter(self):
+        game = trivia.Game()
+        game.add('Alex')
+        game.add('Kelly')
+        self.assertEqual(game.how_many_players, 2)
+        logging.info("Check, that numbers of players is counted good or not\n")
+
+    def test_game_is_not_playable(self):
+        game = trivia.Game()
+        self.assertFalse(game.is_playable())
+        logging.info("The game is not playable without any player\n")
+        
+    def test_game_is_not_playable_with_one_player(self):
+        game = trivia.Game()
+        game.add('Susan')
+        self.assertFalse(game.is_playable())
+        logging.info("The game is not playable with one player\n")
+
+    def test_game_is_playable_with_two_players(self):
+        game = trivia.Game()
+        game.add('Alex')
+        game.add('Kelly')
+        self.assertTrue(game.is_playable())
+        logging.info("The game is playable with two players\n")
+
+    def test_game_is_playable_with_more_players(self):
+        game = trivia.Game()
+        game.add('Alex')
+        game.add('Kelly')
+        game.add('Susan')
+        game.add('Carl')
+        self.assertTrue(game.is_playable())
+        logging.info("The game is playable with more players\n")
+
+    
+
+if __name__ == '__main__':
+    unittest.main()
