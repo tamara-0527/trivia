@@ -42,6 +42,16 @@ class DetailsOfGameTest(unittest.TestCase):
         logging.info("The game is playable with more players\n")
 
     
+    def test_current_category_is_rock(self):
+        game = trivia.Game()
+        game.add('Alex')
+        game.add('Kelly')
+        game.places[0] = 3
+        actual_result_of_current_category = game._current_category
+        self.assertEqual(actual_result_of_current_category, 'Rock')
+        logging.info("The current category is: " + actual_result_of_current_category +"\n")
+
+    
 
 if __name__ == '__main__':
     unittest.main()
