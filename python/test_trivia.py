@@ -17,7 +17,7 @@ class DetailsOfGameTest(unittest.TestCase):
     def test_game_is_not_playable(self):
         game = trivia.Game()
         self.assertFalse(game.is_playable())
-        logging.info("The game is not playable without any player\n")
+        logging.info("\nThe game is not playable without any player\n")
         
     def test_game_is_not_playable_with_one_player(self):
         game = trivia.Game()
@@ -55,9 +55,7 @@ class DetailsOfGameTest(unittest.TestCase):
         game = trivia.Game()
         game.add('Alex')
         game.add('Kelly')
-        game.add('Susan')
-        game.current_player = 1
-        game.roll(5)
+        game.places[game.current_player] = 5
         actual_result_of_current_category = game._current_category
         self.assertEqual(actual_result_of_current_category, "Science")
         logging.info("The current category is: " + actual_result_of_current_category + " for " + game.players[game.current_player]+"\n")
