@@ -71,7 +71,36 @@ class DetailsOfGameTest(unittest.TestCase):
         self.assertTrue(game._did_player_win)
         logging.info("The answer is: " + str(result) + "\n")
 
+    def test_the_player_is_winner(self):
+        game = trivia.Game()
+        game.add('Alex')
+        game.add('Kelly')
+        game.places[0] = 3
+        game.purses[0] = 7
+        winner = game._did_player_win()
+        self.assertTrue(winner, game.players[game.current_player] + " should be the winner with " + str(game.purses[game.current_player]) + "\n")
+        logging.info("The winner is: " + game.players[game.current_player] + " with " + str(game.purses[game.current_player]) + "\n")
     
+    def test_not_winner_with_less_coin(self):
+        game = trivia.Game()
+        game.add('Alex')
+        game.add('Kelly')
+        game.current_player = 1
+        game.places[1] = 3
+        game.purses[1] = 5
+        winner = game._did_player_win()
+        self.assertFalse(winner, "The correct answer should be: " + game.players[game.current_player] + " is not a winner with " + str(game.purses[game.current_player]) + "\n")
+    
+    def test_not_winner_with_six(self):
+        game = trivia.Game()
+        game.add('Alex')
+        game.add('Kelly')
+        game.current_player = 1
+        game.places[1] = 3
+        game.purses[1] = 6
+        winner = game._did_player_win()
+        self.assertFalse(winner, "The correct answer should be: " + game.players[game.current_player] + " is not a winner with " + str(game.purses[game.current_player]) + "\n")
+        logging.info(game.players[game.current_player] + " is the winner? " + str(winner) + "\n")
 
 if __name__ == '__main__':
     unittest.main()
