@@ -1,7 +1,17 @@
 #!/usr/bin/python2
+
 import trivia
 import unittest
 import logging
+
+""" 
+In these tests, I tried to test (with unittest) the main methods with return statements.
+I used the logging class to make the output of the running test functions more readable and also separate them from each other in some way.
+In some assertion methods, I've also used messages, because it can give more information when the test fails. 
+In practice, it should be used in each assertions (to make the test output more human-readable and more understandable).
+In this test suite there is one test which is failing. This happens because that part of the program code is probably not correct.
+Every test has it's own arrange, act and assert sections. I've created a new Game for every test because I would like to make sure they will be independent. 
+ """
 
 logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.INFO)
 
@@ -12,7 +22,7 @@ class DetailsOfGameTest(unittest.TestCase):
         game.add('Alex')
         game.add('Kelly')
         self.assertEqual(game.how_many_players, 2)
-        logging.info("Check, that numbers of players is counted good or not\n")
+        logging.info("Check the numbers of players is counted correctly or not\n")
 
     def test_game_is_not_playable(self):
         game = trivia.Game()
