@@ -51,6 +51,17 @@ class DetailsOfGameTest(unittest.TestCase):
         self.assertEqual(actual_result_of_current_category, 'Rock')
         logging.info("The current category is: " + actual_result_of_current_category +"\n")
 
+    def test_current_category_is_science(self):
+        game = trivia.Game()
+        game.add('Alex')
+        game.add('Kelly')
+        game.add('Susan')
+        game.current_player = 1
+        game.roll(5)
+        actual_result_of_current_category = game._current_category
+        self.assertEqual(actual_result_of_current_category, "Science")
+        logging.info("The current category is: " + actual_result_of_current_category + " for " + game.players[game.current_player]+"\n")
+
     
 
 if __name__ == '__main__':
