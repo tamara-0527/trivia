@@ -60,6 +60,17 @@ class DetailsOfGameTest(unittest.TestCase):
         self.assertEqual(actual_result_of_current_category, "Science")
         logging.info("The current category is: " + actual_result_of_current_category + " for " + game.players[game.current_player]+"\n")
 
+    def test_the_answer_is_correct(self):
+        game = trivia.Game()
+        game.add('Alex')
+        game.add('Kelly')
+        game.places[0] = 3
+        actual_result_of_current_category = game._current_category
+        game._did_player_win()
+        result = game.was_correctly_answered()
+        self.assertTrue(game._did_player_win)
+        logging.info("The answer is: " + str(result) + "\n")
+
     
 
 if __name__ == '__main__':
